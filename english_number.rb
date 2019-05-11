@@ -25,19 +25,33 @@ def english_number number
 	 # 		writing out now.
 
 	 left 	= number
-	 write 	= left/1000 			# How many thousands left?
-	 left 	= left - write*1000 	# substract off those thousands.
+	 write 	= left/1000000 			# How many millions left?
+	 left 	= left - write*1000000 	# substract off those millions.
+
+	if write > 0
+		# Now here's the recursion:
+		millions = english_number(write)
+		num_string = num_string + millions + ' million'
+		 if left > 0
+		 	# So we don't write 'two millionfivehundrethousand'...
+		 	num_string = num_string + ' '
+		 end
+	end
+	
+
+	write 	= left/1000 				# How many thousands left?
+	left 	= left - write*1000 		# substract off those thousands.
 
 	if write > 0
 		# Now here's the recursion:
 		thousands = english_number(write)
 		num_string = num_string + thousands + ' thousand'
 		 if left > 0
-		 	# So we don't write 'two thousandfivehundred'...
+		 	# So we don't write 'two thousandthreehundred'...
 		 	num_string = num_string + ' '
 		 end
 	end
-	
+
 	 write 	= left/100 			# How many hundred left?
 	 left 	= left - write*100 	# substract off those hundreds.
 
@@ -101,4 +115,6 @@ puts english_number(	100)
 puts english_number(	101)
 puts english_number(	234)
 puts english_number(	3211)
+puts english_number(	2000000)
+puts english_number(	5453234)
 puts english_number(	1000000000)
