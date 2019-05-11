@@ -25,6 +25,19 @@ def english_number number
 	 # 		writing out now.
 
 	 left 	= number
+	 write 	= left/1000 			# How many thousands left?
+	 left 	= left - write*1000 	# substract off those hundreds.
+
+	if write > 0
+		# Now here's the recursion:
+		thousands = english_number(write)
+		num_string = num_string + thousands + ' thousand'
+		 if left > 0
+		 	# So we don't write 'two thousandfivehundred'...
+		 	num_string = num_string + ' '
+		 end
+	end
+	
 	 write 	= left/100 			# How many hundred left?
 	 left 	= left - write*100 	# substract off those hundreds.
 
@@ -63,7 +76,7 @@ def english_number number
 		end
 	end
 
-	write = left 	# How many one left to write out?
+	write = left 	# How many ones left to write out?
 	left = 0 		# substract off those ones
 
 	if write > 0
