@@ -26,7 +26,7 @@ def english_number number
 
 	 left 	= number
 	 write 	= left/1000 			# How many thousands left?
-	 left 	= left - write*1000 	# substract off those hundreds.
+	 left 	= left - write*1000 	# substract off those thousands.
 
 	if write > 0
 		# Now here's the recursion:
